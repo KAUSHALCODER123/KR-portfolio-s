@@ -25,6 +25,14 @@ body {
   color: #1f2937;
   background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
+  /* Never allow sideways scroll on phones (decorative blobs, badges, etc.). */
+  overflow-x: hidden;
+}
+
+/* Tap highlight + comfortable touch targets on mobile. */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Subtle entrance animation, respects reduced-motion. */

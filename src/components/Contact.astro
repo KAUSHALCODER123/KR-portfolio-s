@@ -8,7 +8,7 @@ const waLink = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
 )}`;
 ---
 
-<section id="contact" class="bg-cream py-20">
+<section id="contact" class="bg-cream py-16 sm:py-20">
   <div class="mx-auto max-w-4xl px-5">
     <SectionHeading eyebrow="Get In Touch" title="Book Your Visit" />
 
@@ -62,9 +62,9 @@ const waLink = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
               <path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </span>
-          <span>
+          <span class="min-w-0">
             <span class="block text-xs font-600 uppercase tracking-wide text-gray-400">Email</span>
-            <span class="text-base font-600 text-navy">{contact.email}</span>
+            <span class="block break-all text-base font-600 text-navy">{contact.email}</span>
           </span>
         </a>
 
