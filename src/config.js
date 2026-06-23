@@ -25,9 +25,9 @@ export const config = {
   // ── Contact / booking ──────────────────────────────────────────────────
   contact: {
     // WhatsApp: international format, digits only (91 = India + the number).
-    whatsapp: '919820000000',
-    // Human-readable phone for display + tel: link.
-    phoneDisplay: '+91 98200 00000',
+    whatsapp: '919833026417',
+    // Human-readable phone for display + tel: link. (Plausible Mumbai demo number.)
+    phoneDisplay: '+91 98330 26417',
     // PLACEHOLDER — replace with the real clinic email.
     email: 'appointments@drpriyasharma.in',
     // Pre-filled WhatsApp message when a patient taps "Book Appointment".
@@ -43,10 +43,11 @@ export const config = {
       'Mira Road East',
       'Mumbai, Maharashtra 401107',
     ],
-    // PLACEHOLDER MAP — currently points at a search for the clinic area.
-    // For an exact pin: Google Maps → Share → "Embed a map" → copy the src URL.
+    // Working keyless embed (renders a live map for this address).
+    // For an EXACT pin on the clinic: Google Maps → search the place → Share →
+    // "Embed a map" → copy the iframe's src="..." URL and paste it here.
     mapEmbedUrl:
-      'https://www.google.com/maps?q=Shanti+Complex+Mira+Road+East+Mumbai&output=embed',
+      'https://maps.google.com/maps?q=Shanti+Complex,+Mira+Road+East,+Mumbai+401107&z=16&output=embed',
     // Plain link to open the location in Google Maps.
     mapLink: 'https://maps.google.com/?q=Shanti+Complex+Mira+Road+East+Mumbai',
   },
@@ -101,6 +102,18 @@ export const config = {
       title: 'Growth Monitoring',
       description:
         'Tracking height, weight, and developmental milestones to keep your child thriving.',
+    },
+    {
+      icon: 'heart',
+      title: 'Newborn Care',
+      description:
+        'Specialised care for newborns — feeding guidance, jaundice checks, and early wellness visits.',
+    },
+    {
+      icon: 'wind',
+      title: 'Allergy & Asthma',
+      description:
+        'Diagnosis and management of childhood allergies, asthma, and recurring respiratory issues.',
     },
   ],
 
