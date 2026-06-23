@@ -1,0 +1,70 @@
+---
+import { config } from '../config.js';
+import SectionHeading from './SectionHeading.astro';
+
+const { about, doctor } = config;
+---
+
+<section id="about" class="bg-white py-20">
+  <div class="mx-auto max-w-6xl px-5">
+    <SectionHeading eyebrow="About" title={`Meet ${doctor.name}`} />
+
+    <div class="grid gap-10 md:grid-cols-5 md:gap-12">
+      <!-- Bio -->
+      <div class="md:col-span-3">
+        {about.bio.map((p) => <p class="mb-4 text-base leading-relaxed text-gray-600">{p}</p>)}
+
+        <div class="mt-6 inline-flex items-center gap-3 rounded-xl bg-cream px-5 py-3">
+          <span class="font-serif text-3xl font-700 text-gold-dark">
+            {doctor.yearsExperience}+
+          </span>
+          <span class="text-sm font-500 leading-snug text-navy">
+            years of clinical<br />experience
+          </span>
+        </div>
+      </div>
+
+      <!-- Credentials & affiliations -->
+      <div class="md:col-span-2 space-y-6">
+        <div class="rounded-2xl border border-gray-100 bg-cream/50 p-6">
+          <h3 class="mb-4 flex items-center gap-2 font-serif text-lg font-700 text-navy">
+            <svg class="h-5 w-5 text-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M6 12v5c3 3 9 3 12 0v-5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Qualifications
+          </h3>
+          <ul class="space-y-2.5">
+            {
+              about.credentials.map((c) => (
+                <li class="flex gap-2.5 text-sm text-gray-600">
+                  <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"></span>
+                  {c}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border border-gray-100 bg-cream/50 p-6">
+          <h3 class="mb-4 flex items-center gap-2 font-serif text-lg font-700 text-navy">
+            <svg class="h-5 w-5 text-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Hospital Affiliations
+          </h3>
+          <ul class="space-y-2.5">
+            {
+              about.affiliations.map((a) => (
+                <li class="flex gap-2.5 text-sm text-gray-600">
+                  <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"></span>
+                  {a}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

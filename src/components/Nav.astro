@@ -1,0 +1,77 @@
+---
+import { config } from '../config.js';
+
+const waLink = `https://wa.me/${config.contact.whatsapp}?text=${encodeURIComponent(
+  config.contact.whatsappMessage,
+)}`;
+
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#services', label: 'Services' },
+  { href: '#clinic', label: 'Clinic' },
+  { href: '#reviews', label: 'Reviews' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header
+  id="site-nav"
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+  data-nav
+>
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+    <a href="#top" class="flex items-center gap-2 font-serif text-lg font-700 text-navy">
+      <span
+        class="flex h-9 w-9 items-center justify-center rounded-full bg-navy text-sm font-700 text-gold"
+      >
+        {config.doctor.name.replace(/^Dr\.?\s*/i, '').split(' ').map((w) => w[0]).slice(0, 2).join('')}
+      </span>
+      <span class="hidden sm:inline">{config.doctor.name}</span>
+    </a>
+
+    <div class="hidden items-center gap-7 md:flex">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="text-sm font-500 text-gray-600 transition-colors hover:text-navy"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a
+        href={waLink}
+        target="_blank"
+        rel="noopener"
+        class="rounded-full bg-gold px-5 py-2 text-sm font-600 text-navy-dark shadow-sm transition-all hover:bg-gold-dark hover:shadow-md"
+      >
+        Book Appointment
+      </a>
+    </div>
+
+    <!-- Mobile: a compact call-to-book button -->
+    <a
+      href={waLink}
+      target="_blank"
+      rel="noopener"
+      class="rounded-full bg-gold px-4 py-2 text-sm font-600 text-navy-dark shadow-sm md:hidden"
+    >
+      Book
+    </a>
+  </nav>
+</header>
+
+<script>
+  // Add a solid background + shadow once the user scrolls past the hero top.
+  const nav = document.querySelector('[data-nav]');
+  const onScroll = () => {
+    if (window.scrollY > 24) {
+      nav?.classList.add('bg-white/95', 'backdrop-blur', 'shadow-sm');
+    } else {
+      nav?.classList.remove('bg-white/95', 'backdrop-blur', 'shadow-sm');
+    }
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

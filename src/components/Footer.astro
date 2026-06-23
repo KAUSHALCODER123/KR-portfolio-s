@@ -1,0 +1,39 @@
+---
+import { config } from '../config.js';
+
+const { doctor, clinic, footer, contact } = config;
+const year = new Date().getFullYear();
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#services', label: 'Services' },
+  { href: '#clinic', label: 'Clinic' },
+  { href: '#reviews', label: 'Reviews' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<footer class="bg-navy-dark py-12 text-white/70">
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
+      <div>
+        <p class="font-serif text-xl font-700 text-white">{doctor.name}</p>
+        <p class="mt-1 text-sm">{footer.tagline}</p>
+      </div>
+
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        {
+          links.map((l) => (
+            <a href={l.href} class="text-sm transition-colors hover:text-gold">
+              {l.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <div class="mt-8 flex flex-col items-center gap-2 border-t border-white/10 pt-6 text-center text-xs md:flex-row md:justify-between">
+      <p>© {year} {clinic.name}. All rights reserved.</p>
+      <p>{contact.phoneDisplay} · {contact.email}</p>
+    </div>
+  </div>
+</footer>

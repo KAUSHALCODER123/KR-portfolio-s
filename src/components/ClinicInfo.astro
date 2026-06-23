@@ -1,0 +1,88 @@
+---
+import { config } from '../config.js';
+import SectionHeading from './SectionHeading.astro';
+
+const { clinic, timings } = config;
+---
+
+<section id="clinic" class="bg-white py-20">
+  <div class="mx-auto max-w-6xl px-5">
+    <SectionHeading eyebrow="Visit Us" title="Clinic Information" />
+
+    <div class="grid gap-8 lg:grid-cols-2">
+      <!-- Timings + address -->
+      <div class="flex flex-col gap-6">
+        <div class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+          <div class="flex items-center gap-2 bg-navy px-6 py-4">
+            <svg class="h-5 w-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <h3 class="font-serif text-lg font-700 text-white">Consultation Hours</h3>
+          </div>
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-cream text-left text-xs uppercase tracking-wide text-gray-500">
+                <th class="px-6 py-3 font-600">Day</th>
+                <th class="px-4 py-3 font-600">Morning</th>
+                <th class="px-6 py-3 font-600">Evening</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                timings.map((t, i) => (
+                  <tr class={i % 2 ? 'bg-cream/40' : 'bg-white'}>
+                    <td class="px-6 py-3.5 font-600 text-navy">{t.day}</td>
+                    <td class={`px-4 py-3.5 ${/closed/i.test(t.morning) ? 'text-red-500' : 'text-gray-600'}`}>
+                      {t.morning}
+                    </td>
+                    <td class={`px-6 py-3.5 ${/closed/i.test(t.evening) ? 'text-red-500' : 'text-gray-600'}`}>
+                      {t.evening}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rounded-2xl border border-gray-100 bg-cream/50 p-6">
+          <h3 class="mb-3 flex items-center gap-2 font-serif text-lg font-700 text-navy">
+            <svg class="h-5 w-5 text-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" stroke-linejoin="round" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
+            {clinic.name}
+          </h3>
+          <address class="not-italic text-sm leading-relaxed text-gray-600">
+            {clinic.addressLines.map((line) => <span class="block">{line}</span>)}
+          </address>
+          <a
+            href={clinic.mapLink}
+            target="_blank"
+            rel="noopener"
+            class="mt-4 inline-flex items-center gap-1.5 text-sm font-600 text-gold-dark hover:text-navy"
+          >
+            Get Directions
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+        <iframe
+          title={`Map to ${clinic.name}`}
+          src={clinic.mapEmbedUrl}
+          class="h-full min-h-[360px] w-full"
+          style="border:0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
