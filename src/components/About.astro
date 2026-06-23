@@ -11,7 +11,7 @@ const { about, doctor } = config;
 
     <div class="grid gap-10 md:grid-cols-5 md:gap-12">
       <!-- Bio -->
-      <div class="md:col-span-3">
+      <div data-reveal class="md:col-span-3">
         {about.bio.map((p) => <p class="mb-4 text-base leading-relaxed text-gray-600">{p}</p>)}
 
         <div class="mt-6 inline-flex items-center gap-3 rounded-xl bg-cream px-5 py-3">
@@ -26,7 +26,7 @@ const { about, doctor } = config;
 
       <!-- Credentials & affiliations -->
       <div class="md:col-span-2 space-y-6">
-        <div class="rounded-2xl border border-gray-100 bg-cream/50 p-6">
+        <div data-reveal style="--reveal-delay:120ms" class="rounded-2xl border border-gray-100 bg-cream/50 p-6">
           <h3 class="mb-4 flex items-center gap-2 font-serif text-lg font-700 text-navy">
             <svg class="h-5 w-5 text-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke-linecap="round" stroke-linejoin="round" />
@@ -46,7 +46,7 @@ const { about, doctor } = config;
           </ul>
         </div>
 
-        <div class="rounded-2xl border border-gray-100 bg-cream/50 p-6">
+        <div data-reveal style="--reveal-delay:220ms" class="rounded-2xl border border-gray-100 bg-cream/50 p-6">
           <h3 class="mb-4 flex items-center gap-2 font-serif text-lg font-700 text-navy">
             <svg class="h-5 w-5 text-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4" stroke-linecap="round" stroke-linejoin="round" />

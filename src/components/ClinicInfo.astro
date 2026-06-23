@@ -11,7 +11,7 @@ const { clinic, timings } = config;
 
     <div class="grid gap-8 lg:grid-cols-2">
       <!-- Timings + address -->
-      <div class="flex flex-col gap-6">
+      <div data-reveal class="flex flex-col gap-6">
         <div class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
           <div class="flex items-center gap-2 bg-navy px-6 py-4">
             <svg class="h-5 w-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -96,7 +96,7 @@ const { clinic, timings } = config;
       </div>
 
       <!-- Map -->
-      <div class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+      <div data-reveal style="--reveal-delay:140ms" class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
         <iframe
           title={`Map to ${clinic.name}`}
           src={clinic.mapEmbedUrl}

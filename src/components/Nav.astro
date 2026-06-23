@@ -34,7 +34,8 @@ const links = [
         links.map((l) => (
           <a
             href={l.href}
-            class="text-sm font-500 text-gray-600 transition-colors hover:text-navy"
+            data-navlink
+            class="nav-link text-sm font-500 text-gray-600 transition-colors hover:text-navy"
           >
             {l.label}
           </a>
@@ -44,7 +45,7 @@ const links = [
         href={waLink}
         target="_blank"
         rel="noopener"
-        class="rounded-full bg-gold px-5 py-2 text-sm font-600 text-navy-dark shadow-sm transition-all hover:bg-gold-dark hover:shadow-md"
+        class="rounded-full bg-gold px-5 py-2 text-sm font-600 text-navy-dark shadow-sm transition-all hover:bg-gold-dark hover:shadow-md hover:-translate-y-0.5 active:scale-95"
       >
         Book Appointment
       </a>
@@ -74,4 +75,25 @@ const links = [
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll-spy: highlight the nav link for the section currently in view.
+  const navLinks = Array.from(document.querySelectorAll('[data-navlink]'));
+  const byHref = new Map(navLinks.map((l) => [l.getAttribute('href'), l]));
+  const sections = document.querySelectorAll('main section[id]');
+
+  if ('IntersectionObserver' in window && sections.length) {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const link = byHref.get('#' + entry.target.id);
+          if (!link) continue;
+          navLinks.forEach((l) => l.classList.remove('nav-active'));
+          link.classList.add('nav-active');
+        }
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 },
+    );
+    sections.forEach((s) => spy.observe(s));
+  }
 </script>

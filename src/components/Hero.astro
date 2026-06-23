@@ -31,7 +31,7 @@ const initials = doctor.name
     class="relative mx-auto grid max-w-6xl items-center gap-10 px-5 md:grid-cols-2 md:gap-12"
   >
     <!-- Text -->
-    <div class="reveal text-center md:text-left">
+    <div data-reveal class="text-center md:text-left">
       <span
         class="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold-soft/60 px-4 py-1.5 text-sm font-600 text-navy"
       >
@@ -58,7 +58,7 @@ const initials = doctor.name
           href={waLink}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-base font-600 text-navy-dark shadow-md transition-all hover:bg-gold-dark hover:shadow-lg"
+          class="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-base font-600 text-navy-dark shadow-md transition-all hover:-translate-y-0.5 hover:bg-gold-dark hover:shadow-lg active:scale-[0.97]"
         >
           <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" aria-hidden="true">
             <path
@@ -69,7 +69,7 @@ const initials = doctor.name
         </a>
         <a
           href="#services"
-          class="inline-flex items-center gap-2 rounded-full border border-navy/15 px-7 py-3.5 text-base font-600 text-navy transition-colors hover:bg-navy/5"
+          class="inline-flex items-center gap-2 rounded-full border border-navy/15 px-7 py-3.5 text-base font-600 text-navy transition-all hover:bg-navy/5 active:scale-[0.97]"
         >
           View Services
         </a>
@@ -77,10 +77,14 @@ const initials = doctor.name
     </div>
 
     <!-- Photo / placeholder -->
-    <div class="reveal flex justify-center md:justify-end" style="animation-delay:.1s">
-      <div class="relative">
+    <div
+      data-reveal
+      class="flex justify-center md:justify-end"
+      style="--reveal-delay:150ms"
+    >
+      <div class="group relative">
         <div
-          class="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-gold/30 to-navy/10"
+          class="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-gold/30 to-navy/10 transition-transform duration-500 group-hover:scale-[1.02]"
         >
         </div>
         {doctor.photo && (
@@ -88,7 +92,7 @@ const initials = doctor.name
             src={doctor.photo}
             alt={doctor.name}
             onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';"
-            class="relative h-64 w-64 rounded-[1.75rem] object-cover shadow-xl sm:h-80 sm:w-80"
+            class="relative h-64 w-64 rounded-[1.75rem] object-cover shadow-xl transition-transform duration-500 group-hover:scale-[1.03] sm:h-80 sm:w-80"
           />
         )}
         <!-- Fallback shown when no photo is set, or the image fails to load. -->

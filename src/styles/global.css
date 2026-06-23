@@ -35,17 +35,50 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Subtle entrance animation, respects reduced-motion. */
+/* ── Keyboard focus — visible and on-brand ─────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Animated nav underline + scroll-spy active state ───────────────────── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 2px;
+  width: 0;
+  border-radius: 2px;
+  background: var(--color-gold);
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link:hover::after,
+.nav-link.nav-active::after {
+  width: 100%;
+}
+.nav-link.nav-active {
+  color: var(--color-navy);
+}
+
+/* ── Scroll-reveal system ───────────────────────────────────────────────
+   The `.js` flag is added by an inline head script, so content is NEVER
+   hidden when JavaScript is unavailable. Motion is opt-out via OS setting. */
 @media (prefers-reduced-motion: no-preference) {
-  .reveal {
+  .js [data-reveal] {
     opacity: 0;
-    transform: translateY(16px);
-    animation: reveal 0.7s ease forwards;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
   }
-  @keyframes reveal {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
   }
 }
